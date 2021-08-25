@@ -36,9 +36,10 @@ jobs:
     - name: Deploy to EC2
       env:
         PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
-        HOST: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        
-      run: echo $PRIVATE_KEY > private_key.pem && chmod 600 private_key.pem && echo $PRIVATE_KEY
       
-    - run: ssh -o StrictHostKeyChecking=no -i private_key.pem ec2-user@ec2-35-176-169-65.eu-west-2.compute.amazonaws.com
+    - run: |
+        echo $PRIVATE_KEY > private_key && chmod 600 private_key && echo $PRIVATE_KEY
+        eval `ssh-agent`
+        ssh-add - <<< private_key
+        ssh -o StrictHostKeyChecking=no ec2-user@ec2-35-176-169-65.eu-west-2.compute.amazonaws.com
+    
