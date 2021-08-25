@@ -27,11 +27,10 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    - name: Prep stage directory
-      run: mkdir stage && cp target/*.jar stage
-      
-    - name: Upload jar artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: Spring Jar Artifact
-        path: stage
+  deploy:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: setup
+      run: sudo apt update -y
