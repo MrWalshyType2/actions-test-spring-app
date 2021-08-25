@@ -39,9 +39,7 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
         
-      run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST} '
-          
-          git clone https://github.com/MrWalshyType2/actions-test-spring-app.git
-        '
+      run: echo $PRIVATE_KEY
+      
+    - run: ssh -i $PRIVATE_KEY ${USER_NAME}@${HOST} \
+           git clone https://github.com/MrWalshyType2/actions-test-spring-app.git
