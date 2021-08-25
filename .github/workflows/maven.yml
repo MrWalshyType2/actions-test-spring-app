@@ -37,7 +37,6 @@ jobs:
       env:
         PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
     - run: |
-        echo $PRIVATE_KEY > private_key && chmod 600 private_key && echo $PRIVATE_KEY
         eval `ssh-agent`
         ssh-add - <<< private_key
         ssh -o StrictHostKeyChecking=no ec2-user@ec2-35-176-169-65.eu-west-2.compute.amazonaws.com
