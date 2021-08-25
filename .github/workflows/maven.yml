@@ -41,4 +41,4 @@ jobs:
         
       run: echo $PRIVATE_KEY > private_key && chmod 600 private_key
       
-    - run: ssh -o StrictHostKeyChecking=no -i private_key MrWalshyType2@ec2-35-176-169-65.eu-west-2.compute.amazonaws.com
+    - run: ssh -o StrictHostKeyChecking=no -i private_key ec2-user@ec2-35-176-169-65.eu-west-2.compute.amazonaws.com
