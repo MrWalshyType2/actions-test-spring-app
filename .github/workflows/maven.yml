@@ -42,5 +42,5 @@ jobs:
         ssh -o StrictHostKeyChecking=no ec2-user@ec2-35-176-169-65.eu-west-2.compute.amazonaws.com "
           git clone https://github.com/MrWalshyType2/actions-test-spring-app.git;
           cd actions-test-spring-app;
-          ./mvnw spring-boot:run;
+          mvn spring-boot:run;
         "
