@@ -39,4 +39,7 @@ jobs:
       run: |
         eval `ssh-agent`
         echo "${{ secrets.AWS_PRIVATE_KEY }}" | ssh-add -> /dev/null
-        ssh -o StrictHostKeyChecking=no ec2-user@ec2-35-176-169-65.eu-west-2.compute.amazonaws.com
+        ssh -o StrictHostKeyChecking=no ec2-user@ec2-35-176-169-65.eu-west-2.compute.amazonaws.com "
+          cd home/ec2-user;
+          touch test.txt
+        "
