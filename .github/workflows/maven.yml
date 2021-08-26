@@ -43,19 +43,8 @@ jobs:
         # ssh-add into bit bucket prevents interruption to connection, needs investigating
         echo "${{ secrets.AWS_PRIVATE_KEY }}" | ssh-add -> /dev/null
         
-        ssh -o StrictHostKeyChecking=no ubuntu@ec2-35-178-181-102.eu-west-2.compute.amazonaws.com "
-          PID=sudo lsof -t -i:80;
-          echo $PID
-          
-          if [ $PID ];
-          then echo "KILLING PROCESS ID: " + $PID && sudo kill -9 $PID;
-          fi;
-          
+        ssh -o StrictHostKeyChecking=no ubuntu@ec2-35-178-181-102.eu-west-2.compute.amazonaws.com " 
           rm -rf actions-test-spring-app;
           git clone https://github.com/MrWalshyType2/actions-test-spring-app.git;
-          cd actions-test-spring-app;
-          mvn package;
-          
-          # no hangup (nohup) prevents app from stopping after logout, & puts in background;
-          sudo nohup java -jar ./target/spring_cucumber-0.0.1-SNAPSHOT.jar &
+          sudo ./actions-test-spring-app/run.sh
         "
