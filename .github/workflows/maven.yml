@@ -50,5 +50,5 @@ jobs:
           mvn package;
           
           # no hangup (nohup) prevents app from stopping after logout, & puts in background;
-          nohup java -jar ./target/spring_cucumber-0.0.1-SNAPSHOT.jar &
+          sudo nohup java -jar ./target/spring_cucumber-0.0.1-SNAPSHOT.jar &
         "
