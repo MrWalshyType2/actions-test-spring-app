@@ -48,5 +48,7 @@ jobs:
           git clone https://github.com/MrWalshyType2/actions-test-spring-app.git;
           cd actions-test-spring-app;
           mvn package;
-          java -jar ./target/spring_cucumber-0.0.1-SNAPSHOT.jar;
+          
+          # no hangup (nohup) prevents app from stopping after logout, & puts in background;
+          nohup java -jar ./target/spring_cucumber-0.0.1-SNAPSHOT.jar &;
         "
