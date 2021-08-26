@@ -44,7 +44,7 @@ jobs:
         echo "${{ secrets.AWS_PRIVATE_KEY }}" | ssh-add -> /dev/null
         
         ssh -o StrictHostKeyChecking=no ubuntu@ec2-35-178-181-102.eu-west-2.compute.amazonaws.com "
-          PID = sudo lsof -t -i:80;
+          PID=sudo lsof -t -i:80;
           
           if [$PID]
           then
@@ -53,7 +53,7 @@ jobs:
           fi;
           
           rm -rf actions-test-spring-app;
-          URL = https://github.com/MrWalshyType2/actions-test-spring-app.git;
+          URL=https://github.com/MrWalshyType2/actions-test-spring-app.git;
           git clone $URL;
           cd actions-test-spring-app;
           mvn package;
