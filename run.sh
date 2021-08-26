@@ -1,8 +1,8 @@
 PID=sudo lsof -t -i:80
 echo $PID
 
-sudo kill -9 $PID
-sleep 10
+sudo kill $PID
+wait
 
 echo "PORT 80: " + $(sudo lsof -t -i:80)
 #if [ $PID ];
