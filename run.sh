@@ -1,7 +1,10 @@
-PID=sudo lsof -t -i:80
-echo $PID
+#PID=sudo lsof -t -i:80
+#echo $PID
 
-sudo kill $PID
+#sudo kill $PID
+#wait
+
+sudo kill -9 $(sudo lsof -t -i:80)
 wait
 
 echo "PORT 80: " + $(sudo lsof -t -i:80)
