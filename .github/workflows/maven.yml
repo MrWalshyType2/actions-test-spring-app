@@ -38,9 +38,11 @@ jobs:
         PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
       run: |
         eval `ssh-agent`
+        # ssh-add into bit bucket prevents interruption to connection, needs investigating
         echo "${{ secrets.AWS_PRIVATE_KEY }}" | ssh-add -> /dev/null
-        ssh -o StrictHostKeyChecking=no ec2-user@ec2-35-176-169-65.eu-west-2.compute.amazonaws.com "
+        ssh -o StrictHostKeyChecking=no ubuntu@ec2-35-178-181-102.eu-west-2.compute.amazonaws.com "
           git clone https://github.com/MrWalshyType2/actions-test-spring-app.git;
+          rm -rf actions-test-spring-app;
           cd actions-test-spring-app;
           mvn spring-boot:run;
         "
