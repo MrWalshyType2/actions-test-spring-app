@@ -45,11 +45,10 @@ jobs:
         
         ssh -o StrictHostKeyChecking=no ubuntu@ec2-35-178-181-102.eu-west-2.compute.amazonaws.com "
           PID=sudo lsof -t -i:80;
+          echo $PID
           
           if [ $PID ];
-          then
-            echo "KILLING PROCESS ID: " + $PID;
-            sudo kill -9 $PID;
+          then echo "KILLING PROCESS ID: " + $PID && sudo kill -9 $PID;
           fi;
           
           rm -rf actions-test-spring-app;
