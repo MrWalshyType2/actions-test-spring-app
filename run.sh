@@ -1,13 +1,10 @@
-#PID=sudo lsof -t -i:80
-#echo $PID
+PID=sudo lsof -t -i:80
 
-#sudo kill $PID
-#wait
-
-sudo kill -9 $(sudo lsof -t -i:80)
+#sudo kill -9 $(sudo lsof -t -i:80)
+sudo kill -9 $PID
 wait
 
-echo "PORT 80: " + $(sudo lsof -t -i:80)
+#echo "PORT 80: " + $(sudo lsof -t -i:80)
 #if [ $PID ];
 #then 
 #  echo "KILLING PROCESS ID: " + $PID
