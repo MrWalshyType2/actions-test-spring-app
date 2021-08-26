@@ -18,4 +18,4 @@ cd actions-test-spring-app;
 mvn package;
 
 # no hangup (nohup) prevents app from stopping after logout, & puts in background;
-sudo nohup java -jar ./target/spring_cucumber-0.0.1-SNAPSHOT.jar &
+sudo nohup java -jar ./target/spring_cucumber-0.0.1-SNAPSHOT.jar -> /dev/null
