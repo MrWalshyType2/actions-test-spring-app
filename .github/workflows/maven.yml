@@ -46,5 +46,5 @@ jobs:
         ssh -o StrictHostKeyChecking=no ubuntu@ec2-35-178-181-102.eu-west-2.compute.amazonaws.com " 
           rm -rf actions-test-spring-app;
           git clone https://github.com/MrWalshyType2/actions-test-spring-app.git;
-          sudo ./actions-test-spring-app/run.sh
+          sudo sh ./actions-test-spring-app/run.sh
         "
