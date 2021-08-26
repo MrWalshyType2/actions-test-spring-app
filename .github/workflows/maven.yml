@@ -36,13 +36,17 @@ jobs:
       shell: bash
       env:
         PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+      # can the jar be copied across from the build step instead
       run: |
         eval `ssh-agent`
+        
         # ssh-add into bit bucket prevents interruption to connection, needs investigating
         echo "${{ secrets.AWS_PRIVATE_KEY }}" | ssh-add -> /dev/null
+        
         ssh -o StrictHostKeyChecking=no ubuntu@ec2-35-178-181-102.eu-west-2.compute.amazonaws.com "
-          git clone https://github.com/MrWalshyType2/actions-test-spring-app.git;
           rm -rf actions-test-spring-app;
+          git clone https://github.com/MrWalshyType2/actions-test-spring-app.git;
           cd actions-test-spring-app;
-          mvn spring-boot:run;
+          mvn package;
+          java -jar ./target/spring_cucumber-0.0.1-SNAPSHOT.jar;
         "
