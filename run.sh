@@ -1,15 +1,10 @@
-PID=sudo lsof -t -i:80
-
-#sudo kill -9 $(sudo lsof -t -i:80)
-sudo kill -9 $PID
-wait
-
-#echo "PORT 80: " + $(sudo lsof -t -i:80)
-#if [ $PID ];
-#then 
-#  echo "KILLING PROCESS ID: " + $PID
-#  sudo kill -9 $PID;
-#fi;
+# check for process on port 80
+if [ $(sudo lsof -t -i:80) ];
+then
+  echo "KILLING PROCESS WITH PID: " + $(sudo lsof -t -i:80)
+  sudo kill -9 $(sudo lsof -t -i:80)
+  wait
+fi;
 
 cd actions-test-spring-app
 mvn package
