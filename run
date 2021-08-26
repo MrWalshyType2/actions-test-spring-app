@@ -1,0 +1,16 @@
+PID = sudo lsof -t -i:80
+          
+if [$PID]
+then
+  echo "KILLING PROCESS ID: " + $PID
+  sudo kill -9 $PID
+fi
+
+rm -rf actions-test-spring-app
+URL = https://github.com/MrWalshyType2/actions-test-spring-app.git
+git clone $URL
+cd actions-test-spring-app
+mvn package
+
+# no hangup (nohup) prevents app from stopping after logout, & puts in background
+sudo nohup java -jar ./target/spring_cucumber-0.0.1-SNAPSHOT.jar &
