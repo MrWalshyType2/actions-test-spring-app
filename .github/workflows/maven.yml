@@ -44,7 +44,10 @@ jobs:
         echo "${{ secrets.AWS_PRIVATE_KEY }}" | ssh-add -> /dev/null
         
         ssh -o StrictHostKeyChecking=no ubuntu@ec2-35-178-181-102.eu-west-2.compute.amazonaws.com "
-          sudo kill -9 $(sudo lsof -t -i:80);
+          pid = sudo lsof -t -i:80;
+          echo "KILLING PROCESS ID: " + pid
+          sudo kill -9 pid;
+          
           rm -rf actions-test-spring-app;
           git clone https://github.com/MrWalshyType2/actions-test-spring-app.git;
           cd actions-test-spring-app;
